@@ -1,0 +1,43 @@
+\documentclass {jsarticle}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{float}
+\usepackage{multicol}
+\usepackage{listings,jlisting}
+\renewcommand{\lstlistingname}{リスト}
+\lstset{
+	language=java,%
+	basicstyle=\scriptsize,%
+	numbersep=5pt,%
+	breaklines=true,%
+	breakindent=5pt,%
+	frame=single,%
+	tabsize=2,%
+	numbers=left,%
+	numberstyle=\tiny,%
+	showstringspaces=false%
+	}%
+\setlength{\columnsep}{20pt}
+\setlength{\columnwidth}{200cm}
+
+\begin{document}
+
+\title{知能システム前期末レポート}
+\author{15422 篠田拓樹}
+\date{\today}
+\maketitle
+%-----------------------------------------
+\newpage
+\section{XORを学習するニューラルネットワーク}
+  \input{}
+%-----------------------------------------
+\section{魚を識別するニューラルネットワーク}
+  \input{}
+%------------------------------------------
+\newpage
+\section{プログラムリスト}
+\begin{multicols}{2}
+\lstinputlisting[caption=sampleBP.c,label=sampleBP.c]
+{../sample/sampleBP.c}
+\end{multicols}
+
+\end{document}

@@ -3,29 +3,41 @@ import matplotlib.pyplot as plt
 
 def f(a):
     #return (a+1.0)**2 * (a-1.0)**2
-    return a**4 - 8 * a**3 + 18 * a**2 -11
-
-def grad_f(a):
-    #return 4 * (a**3 - a)
-    return 4 * a**3 - 24 * a**2 + 36*a
+    return a**4 - 8*a**3 + 18*a**2 -11
 
 def graphic_f():
-    N = 2
+    N = 100
     x = np.arange(-1 * N,N)
     y = f(x)
 
     plt.plot(x,y)
     plt.show()
 
-def gradient_decent(eta, a_t, step):
+def gradient(a):
+    #return 4*(a**3-a)
+    return 4*a**3 - 24*a**2 + 36*a
+    #return 3*a**2 - 6*a - 9
 
-    for _ in range(step):
-        a_t -= eta * grad_f(a_t)
+def gradient_diff(a_0,eta,step):
+    a_k = a_0
 
-        print("a = ",a_t)
+    for i in range(step):
+        a_k -= eta * gradient(a_k)
+        print(a_k)
 
-    return a_t
 
 if __name__ == '__main__':
+    # no1
     graphic_f()
-    gradient_decent(0.01, 2.0, 100)
+    # no2
+    #gradient_diff(2.0,0.01)
+    #no3
+    #gradient_diff(-2.0,0.01)
+    #no4
+    #gradient_diff(2.0,0.001)
+    #no6
+    gradient_diff(1.0,0.01,100)
+    gradient_diff(5.0,0.01,100)
+    #no7
+
+    #no8
