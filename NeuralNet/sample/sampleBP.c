@@ -13,7 +13,7 @@
 
 #define EPSILON 4.0
 #define ETA 0.1
-#define TIMES 1000
+#define TIMES 1
 #define INIT_WEIGHT 0.3
 
 double randNum(void)
@@ -57,15 +57,15 @@ int main(void)
   seed = 0;
   srand(seed);
 
-  wbd = randNum();
-  wbe = randNum();
-  wcd = randNum();
-  wce = randNum();
-  wab = randNum();
-  wac = randNum();
-  offb = randNum();
-  offc = randNum();
-  offa = randNum();
+  wbd = 1;//randNum();
+  wbe = 1;//randNum();
+  wcd = 1;//randNum();
+  wce = 1;//randNum();
+  wab = 1;//randNum();
+  wac = 1;//randNum();
+  offb = 1;//randNum();
+  offc = 1;//randNum();
+  offa = 1;//randNum();
 
   for(times=0;times<TIMES; times++) {
 
@@ -126,7 +126,9 @@ int main(void)
     }
     printf("errorSum = %f\n", errorSum/4.0);
     fprintf(fp, "%f\n", errorSum/4.0);
-
+    //printf(" wab = %f\n wac = %f\n offa=%f\n",wab,wac,offa);
+    //printf(" wbd = %f\n wbe = %f\n offb=%f\n",wbd,wbe,offb);
+    //printf(" wcd = %f\n wce = %f\n offc=%f\n",wcd,wce,offc);
   }
 
   fclose(fp);
