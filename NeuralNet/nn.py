@@ -7,15 +7,16 @@ class NN:
     初期化
     """
     def __init__(self,in_newrons,mid_newrons,out_newrons):
+        np.random.seed(0)
         # 各層のニューロン数
         self.in_newrons = in_newrons
         self.mid_newrons = mid_newrons
         self.out_newrons = out_newrons
         # 各層間の重み行列
-        self.W1 = np.array([[1,1],[1,1]])#0.3*np.random.randn(in_newrons, mid_newrons)
-        self.W2 = np.array([[1],[1]])#0.3*np.random.randn(mid_newrons, out_newrons)
-        self.B1 = np.array([1,1])#0.3*np.random.randn(mid_newrons)
-        self.B2 = np.array([1])#0.3*np.random.randn(out_newrons)
+        self.W1 = 0.3*np.random.randn(in_newrons, mid_newrons)
+        self.W2 = 0.3*np.random.randn(mid_newrons, out_newrons)
+        self.B1 = 0.3*np.random.randn(mid_newrons)
+        self.B2 = 0.3*np.random.randn(out_newrons)
         self.eps = 4
 
     """
@@ -80,13 +81,12 @@ if __name__ == "__main__":
     X_train = np.array([[0,0],[0,1],[1,0],[1,1]])
     Y_train = np.array([[0], [1], [1], [0]])
     # エポック数
-    epochs = 50000
+    epochs = 1000
     # 学習係数
-    learning_rate = 0.01
+    learning_rate = 0.1
 
     NN = NN(input_units, hidden_units, output_units)
     # 学習
-    """
     for i in range(epochs):
         total_error = 0
         total_error += NN.train(X_train[0], Y_train[0], learning_rate)
@@ -94,11 +94,10 @@ if __name__ == "__main__":
         total_error += NN.train(X_train[2], Y_train[2], learning_rate)
         total_error += NN.train(X_train[3], Y_train[3], learning_rate)
         print("total error = ", total_error/4)
-"""
+
     # 計算
     for i in X_train:
         NN.forward(i)
-
         print(i,NN.O2,end="")
         if NN.O2 >= 0.5 : print(" (1.0)")
         else : print(" (0.0)")
