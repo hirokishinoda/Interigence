@@ -58,14 +58,17 @@ int main(void)
   srand(seed);
 
   wbd = randNum();
-  wbe = randNum();
-  wcd = randNum();
-  wce = randNum();
-  wab = randNum();
-  wac = randNum();
+  wbe =  randNum();
+
+  wcd =  randNum();
+  wce =  randNum();
+
+  wab =  randNum();
+  wac =  randNum();
+
   offb = randNum();
-  offc = randNum();
-  offa = randNum();
+  offc =  randNum();
+  offa =  randNum();
 
   for(times=0;times<TIMES; times++) {
 
@@ -117,9 +120,11 @@ int main(void)
       wab = wab - ETA * deltaa * outb;
       wac = wac - ETA * deltaa * outc;
       offa = offa - ETA * deltaa;
+
       wbd = wbd - ETA * deltab * outd;
       wbe = wbe - ETA * deltab * oute;
       offb = offb - ETA * deltab;
+
       wcd = wcd - ETA * deltac * outd;
       wce = wce - ETA * deltac * oute;
       offc = offc - ETA * deltac;
@@ -130,6 +135,10 @@ int main(void)
     //printf(" wbd = %f\n wbe = %f\n offb=%f\n",wbd,wbe,offb);
     //printf(" wcd = %f\n wce = %f\n offc=%f\n",wcd,wce,offc);
   }
+  printf(" wab = %f\n wac = %f\n offa=%f\n",wab,wac,offa);
+  printf(" wbd = %f\n wbe = %f\n offb=%f\n",wbd,wbe,offb);
+  printf(" wcd = %f\n wce = %f\n offc=%f\n",wcd,wce,offc);
+
 
   fclose(fp);
 

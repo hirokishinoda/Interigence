@@ -13,10 +13,14 @@ class NN:
         self.mid_newrons = mid_newrons
         self.out_newrons = out_newrons
         # 各層間の重み行列
-        self.W1 = 0.3*np.random.randn(in_newrons, mid_newrons)
-        self.W2 = 0.3*np.random.randn(mid_newrons, out_newrons)
-        self.B1 = 0.3*np.random.randn(mid_newrons)
-        self.B2 = 0.3*np.random.randn(out_newrons)
+        self.W1 = np.array([[0.204113,0.169860],[0.179064,-0.063370]])
+        #0.3*np.random.randn(in_newrons, mid_newrons)
+        self.W2 = np.array([[0.246988],[-0.181469]])
+        #0.3*np.random.randn(mid_newrons, out_newrons)
+        self.B1 = np.array([-0.98866,0.160938])
+        #0.3*np.random.randn(mid_newrons)
+        self.B2 = np.array([-0.133335])
+        #0.3*np.random.randn(out_newrons)
         self.eps = 4
 
     """
@@ -86,6 +90,9 @@ if __name__ == "__main__":
     learning_rate = 0.1
 
     NN = NN(input_units, hidden_units, output_units)
+    NN.forward(X_train)
+    print(NN.O2)
+    """
     # 学習
     for i in range(epochs):
         total_error = 0
@@ -95,9 +102,13 @@ if __name__ == "__main__":
         total_error += NN.train(X_train[3], Y_train[3], learning_rate)
         print("total error = ", total_error/4)
 
+    print(NN.W1)
+    print(NN.B1)
+    print(NN.W2)
+    print(NN.B2)
     # 計算
     for i in X_train:
         NN.forward(i)
         print(i,NN.O2,end="")
         if NN.O2 >= 0.5 : print(" (1.0)")
-        else : print(" (0.0)")
+        else : print(" (0.0)")"""
