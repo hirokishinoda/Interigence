@@ -49,8 +49,10 @@ class Newral:
     """
     def train(self, x, t, eta, times):
         for i in range(times):
+            total_error = 0
             for j, k in zip(x, t):
-                N.BP(j, k, eta)
+                total_error += N.BP(j, k, eta)
+            self.errors = np.append(self.errors, total_error.reshape(1,-1), axis=0)
 
     # 1パターン分の学習を行う
     def BP(self, x, t, eta):
@@ -58,7 +60,6 @@ class Newral:
         out_mid, out_out = self.forward(x)
         # 誤差の計算
         error = self.mean_sqard_error(out_out, t)
-        self.errors = np.append(self.errors, error.reshape(1,-1), axis=0)
         # デルタを先に計算する
         out_delta = (out_out - t) * self.grad_sigmoid(out_out)
         mid_delta = self.grad_sigmoid(out_mid) * (self.out_weight[1:,:].dot(out_delta))
@@ -69,12 +70,13 @@ class Newral:
         self.out_weight -= eta * update_out
         self.mid_weight -= eta * update_mid
 
+        return error
+
     """
     誤差の変化を確認するグラフ
     """
     def error_graph(self):
-        plt.figure(figsize=(10,20))
-        plt.ylim(0.0,1.0)
+        #plt.figure(figsize=(10,20))
         plt.xlabel("ephocs")
         plt.ylabel("error")
         plt.plot(self.errors[:,0],"r--")
