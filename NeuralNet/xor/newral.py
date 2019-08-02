@@ -80,7 +80,8 @@ class Newral:
         plt.xlabel("ephocs")
         plt.ylabel("error")
         plt.plot(self.errors[:,0],"r--")
-        plt.show()
+        #plt.show()
+        plt.savefig("report/img/error1.pdf")
 
 if __name__ == "__main__":
     # 各層のニューロン数

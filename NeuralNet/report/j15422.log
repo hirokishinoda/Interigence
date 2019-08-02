@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.2-190131-2.6 (utf8.euc) (TeX Live 2019/Arch Linux) (preloaded format=platex 2019.7.14)  22 JUL 2019 18:33
+This is e-pTeX, Version 3.14159265-p3.8.2-190131-2.6 (utf8.euc) (TeX Live 2019/Arch Linux) (preloaded format=platex 2019.7.14)  28 JUL 2019 21:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -210,25 +210,22 @@ LaTeX Font Info:    Font shape `JT1/gt/m/n' will be
 LaTeX Font Info:    Font shape `JY1/gt/m/n' will be
 (Font)              scaled to size 13.83836pt on input line 30.
 
+(./files/xor.tex
+File: img/error1.pdf Graphic file (type pdf)
+<img/error1.pdf>
+LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
+(Font)              scaled to size 8.64899pt on input line 20.
+LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
+(Font)              scaled to size 8.64899pt on input line 20.
+)
 
-! LaTeX Error: File `.tex' not found.
-
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: tex)
-
-Enter file name: 
-
-! LaTeX Error: File `.tex' not found.
+! LaTeX Error: File `files/.tex' not found.
 
 Type X to quit or <RETURN> to proceed,
 or enter new name. (Default extension: tex)
 
 Enter file name: 
 [2]
-LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 8.64899pt on input line 40.
-LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 8.64899pt on input line 40.
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
 (Font)              scaled to size 6.72699pt on input line 40.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
@@ -272,14 +269,44 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 40.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 40.
- [3] (./j15422.aux) ) 
+ [3]
+Overfull \hbox (3.70403pt too wide) in paragraph at lines 42--42
+[][] 
+ []
+
+
+Overfull \hbox (8.48741pt too wide) in paragraph at lines 42--42
+[][] 
+ []
+
+
+Overfull \hbox (8.2708pt too wide) in paragraph at lines 42--42
+[][][][][] 
+ []
+
+
+Overfull \hbox (13.2708pt too wide) in paragraph at lines 42--42
+[][] 
+ []
+
+
+Overfull \hbox (8.2708pt too wide) in paragraph at lines 42--42
+[][][][][] 
+ []
+
+
+Overfull \hbox (17.83757pt too wide) in paragraph at lines 42--42
+[][][][][] 
+ []
+
+[4] [5] (./j15422.aux) ) 
 Here is how much of TeX's memory you used:
- 2802 strings out of 493230
- 35626 string characters out of 6149322
- 1319805 words of memory out of 5000000
- 6798 multiletter control sequences out of 15000+600000
+ 2886 strings out of 493230
+ 36545 string characters out of 6149322
+ 712805 words of memory out of 5000000
+ 6870 multiletter control sequences out of 15000+600000
  15011 words of font info for 67 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
- 31i,6n,40p,201b,1539s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 31i,6n,40p,201b,1900s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on j15422.dvi (3 pages, 20456 bytes).
+Output written on j15422.dvi (5 pages, 46456 bytes).
