@@ -1,5 +1,7 @@
+import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import random
 
 """
 3層全結合型ニューラルネットワーク
@@ -54,6 +56,19 @@ class Newral:
 
         return (out_mid, out_out)
 
+    def predict(self, x, t):
+        right = 0
+
+        for i,j in zip(x,t):
+            mid,out = self.forward(i)
+            print(i,j,out)
+            if out >= 0.5 : out = 1
+            else : out = 0
+            print(out)
+
+            if out == j : right += 1
+
+        return right / len(t)
     """
     学習を行う
     """
@@ -65,6 +80,7 @@ class Newral:
             for j, k in zip(x, t):
                 total_error += N.BP(j, k, eta)
             # 誤差を記録
+            print("error : ",total_error)
             self.errors = np.append(self.errors, total_error.reshape(1,-1), axis=0)
 
     """ 1パターン分の学習を行う """
@@ -93,25 +109,44 @@ class Newral:
         plt.xlabel("ephocs")
         plt.ylabel("error")
         plt.plot(self.errors[:,0],"r--")
-        #plt.show()
-        plt.savefig("report/img/error1.pdf")
+        plt.show()
+        #plt.savefig("report/img/error1.pdf")
+
+def make_dataset():
+    # ファイル読込
+    x_A = pd.read_csv("../data/fishA.train", sep='\s+', header=None).values
+    x_B = pd.read_csv("../data/fishA.train", sep='\s+', header=None).values
+    # 入力と出力を結合
+    xy_A = np.insert(x_A, 2, 1,axis=1) # Aは教師1
+    xy_B = np.insert(x_A, 2, 0,axis=1) # Bは教師0
+    xy = np.vstack((xy_A,xy_B)) # 結合
+    # シャッフル
+    index = list(range(xy.shape[0]))
+    random.shuffle(index)
+    dataset = xy[index]
+    print("data set\n",dataset[:10])
+    # テストとトレインに分ける
+    train, test = np.split(dataset, [int(dataset.shape[0] * 0.9)])
+
+    return (train, test)
 
 if __name__ == "__main__":
     # 各層のニューロン数
     in_newrons, mid_newrons, out_newrons = (2, 2, 1)
+    # データセット作成
+    train,test = make_dataset()
     # 入力
-    x = np.array([[0,0],[0,1],[1,0],[1,1]])
+    x = train[:,:-1]
     # 出力
-    t = np.array([[0],[1],[1],[0]])
+    t = train[:,-1]
 
     # ニューラルネット
     N = Newral(in_newrons, mid_newrons, out_newrons)
     # 訓練
-    N.train(x, t, eta = 0.1, times = 1000)
+    N.train(x, t, eta = 1, times = 1000)
     # 誤差グラフ
     N.error_graph()
 
     # 前向き計算で確認
-    for i,j in zip(x,t):
-        o1,o2 = N.forward(i)
-        print(i,o2,j)
+    rate = N.predict(test[:,:-1],test[:,-1])
+    print(rate)
