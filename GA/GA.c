@@ -1,5 +1,5 @@
 /*
- *  GA 
+ *  GA
  *
  *  comment  :
  *
@@ -31,7 +31,7 @@ void dispFitness(int fitness[]);
 int calcMaxFitness(int fitness[]);
 void selection(int fitness[], int parents[]);
 void crossover(char *after_gene[],int popNum,char *gene[], int parents[],int itemNum);
-void mutation(char *after_gene[],int popNum,char *gene[], int parents[],int itemNum);
+void mutation(char *gene[],int popNum,int itemNum);
 
 /*--------------------------------------------------------------------
         Function  : GAメイン関数
@@ -62,6 +62,7 @@ void GAmain(struct item *itemData, int itemNum, char *gene[], int maxWeight)
     /* 適合度を算出 */
     calcFitness(itemData, itemNum, gene, fitness, maxWeight);
     maxFitness = calcMaxFitness(fitness);
+    printf("%d\n",maxFitness);
 
     /* 全世代を通じた最大値を算出 */
     if(maxFitnessAll<maxFitness) {
@@ -78,24 +79,23 @@ void GAmain(struct item *itemData, int itemNum, char *gene[], int maxWeight)
       crossover(nextGene, popNum, gene, parents, itemNum);
 
       /* 突然変異 */
-      mutation(nextGene, popNum, gene, parents, itemNum);
-
+      mutation(nextGene, popNum, itemNum);
     }
 
     /* 生成した次世代の遺伝子の並びをコピーする */
     for(i=0; i<POPULATION; i++) {
       for(j=0; j<itemNum; j++) {
-	gene[i][j] = nextGene[i][j];
+	      gene[i][j] = nextGene[i][j];
       }
     }
-
+    printf("\n");
+    dispGene(gene,itemNum);
   }
 
   /* 事後処理 */
   for(i=0; i<POPULATION; i++) {
     free(nextGene[i]);
   }
-
 }
 
 /*--------------------------------------------------------------------
@@ -232,21 +232,13 @@ void crossover(char *after_gene[],int popNum,char *gene[], int parents[],int ite
         Function  : 突然変異
         Comment   :
 --------------------------------------------------------------------*/
-void mutation(char *after_gene[],int popNum,char *gene[], int parents[],int itemNum)
+void mutation(char *gene[],int popNum,int itemNum)
 {
   double Pm = 1.0 / itemNum;
   int i;
 
   for(i = 0;i < itemNum;i++){
-    if(rand() % RAND_MAX <= Pm){
-      after_gene[popNum][i] = gene[parents[0]][i]^1;
-    }else{
-      after_gene[popNum][i] = gene[parents[0]][i];
-    }
-    if(rand() % RAND_MAX <= Pm){
-      after_gene[popNum + 1][i] = gene[parents[1]][i]^1;
-    }else{
-      after_gene[popNum + 1][i] = gene[parents[1]][i];
-    }
+    if(rand() % RAND_MAX <= Pm) gene[popNum][i] = gene[popNum][i]^1;
+    if(rand() % RAND_MAX <= Pm) gene[popNum+1][i] = gene[popNum+1][i]^1;
   }
 }

@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
 #include "dragonPole.h"
-
-#define LEN 10000
 
 void dragonpoleMain();
 int calcBattlePoint(int *selection);
@@ -26,7 +25,7 @@ int main(void)
   max_index = 0;
   max_point = 0;
   /* 技を選択 (ここでは，0, 4, 8の技を選択した)*/
-  for(i = 0;;i++){
+  for(i = 0;i < pow(2,ITEM)-1;i++){
     // 各ビットを入れる
     for(j = 0;j < ITEM;j++){
       selection[j] = (i >> j) & 0x01;
