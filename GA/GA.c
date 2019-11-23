@@ -1,5 +1,5 @@
 /*
- *  GA
+
  *
  *  comment  :
  *
@@ -62,7 +62,7 @@ void GAmain(struct item *itemData, int itemNum, char *gene[], int maxWeight)
     /* 適合度を算出 */
     calcFitness(itemData, itemNum, gene, fitness, maxWeight);
     maxFitness = calcMaxFitness(fitness);
-    printf("%d\n",maxFitness);
+    //printf("%d\n",maxFitness);
 
     /* 全世代を通じた最大値を算出 */
     if(maxFitnessAll<maxFitness) {
@@ -74,10 +74,8 @@ void GAmain(struct item *itemData, int itemNum, char *gene[], int maxWeight)
 
       /* 選択(ルーレット選択) */
       selection(fitness, parents);
-
       /* 交叉 */
       crossover(nextGene, popNum, gene, parents, itemNum);
-
       /* 突然変異 */
       mutation(nextGene, popNum, itemNum);
     }
@@ -88,8 +86,8 @@ void GAmain(struct item *itemData, int itemNum, char *gene[], int maxWeight)
 	      gene[i][j] = nextGene[i][j];
       }
     }
-    printf("\n");
-    dispGene(gene,itemNum);
+    //printf("\n");
+    //dispGene(gene,itemNum);
   }
 
   /* 事後処理 */
@@ -215,7 +213,7 @@ void selection(int fitness[], int parents[])
 --------------------------------------------------------------------*/
 void crossover(char *after_gene[],int popNum,char *gene[], int parents[],int itemNum)
 {
-  int cross_point = itemNum / 2;
+  int cross_point = random() % itemNum;
   int i;
 
   for(i = 0;i < itemNum;i++){
@@ -238,7 +236,7 @@ void mutation(char *gene[],int popNum,int itemNum)
   int i;
 
   for(i = 0;i < itemNum;i++){
-    if(rand() % RAND_MAX <= Pm) gene[popNum][i] = gene[popNum][i]^1;
-    if(rand() % RAND_MAX <= Pm) gene[popNum+1][i] = gene[popNum+1][i]^1;
+    if(((double)rand() / RAND_MAX) <= Pm) gene[popNum][i] = gene[popNum][i]^1;
+    if(((double)rand() / RAND_MAX) <= Pm) gene[popNum+1][i] = gene[popNum+1][i]^1;
   }
 }

@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
 
   /* GA */
   GAmain(itemData, itemNum, gene, maxWeight);
-      
+
   /* 事後処理 */
   free(itemData);
   for(i=0; i<POPULATION; i++) {
