@@ -17,9 +17,16 @@ class Newral:
         # 誤差記録用
         self.errors = np.zeros((1,out_newrons))
         # 中間層用重み
-        self.mid_weight = np.random.random_sample((in_newrons + 1, mid_newrons))
+        #self.mid_weight = np.random.random_sample((in_newrons + 1, mid_newrons))
+        self.mid_weight = np.array([[-0.133335,-0.098866],
+                  [ 0.204113, 0.169860],
+                  [-0.063370, 0.179064]])
+
         # 出力層用重み
-        self.out_weight = np.random.random_sample((mid_newrons + 1, out_newrons))
+        #self.out_weight = np.random.random_sample((mid_newrons + 1, out_newrons))
+        self.out_weight = np.array([[0.160938],
+                  [0.246988],
+                  [-0.181469]])
 
     """
     シグモイド関数
@@ -61,12 +68,12 @@ class Newral:
 
         for i,j in zip(x,t):
             mid,out = self.forward(i)
-            print(i,j,out)
-            if out >= 0.5 : out = 1
-            else : out = 0
-            print(out)
+            print(i,j)
+            if out >= 0.5 : ans = 1
+            else : ans = 0
+            print(out,ans)
 
-            if out == j : right += 1
+            if ans == j : right += 1
 
         return right / len(t)
     """
@@ -110,15 +117,15 @@ class Newral:
         plt.ylabel("error")
         plt.plot(self.errors[:,0],"r--")
         plt.show()
-        #plt.savefig("report/img/error1.pdf")
+        #plt.savefig("../report/img/error2.pdf")
 
 def make_dataset():
     # ファイル読込
     x_A = pd.read_csv("../data/fishA.train", sep='\s+', header=None).values
-    x_B = pd.read_csv("../data/fishA.train", sep='\s+', header=None).values
+    x_B = pd.read_csv("../data/fishB.train", sep='\s+', header=None).values
     # 入力と出力を結合
     xy_A = np.insert(x_A, 2, 1,axis=1) # Aは教師1
-    xy_B = np.insert(x_A, 2, 0,axis=1) # Bは教師0
+    xy_B = np.insert(x_B, 2, 0,axis=1) # Bは教師0
     xy = np.vstack((xy_A,xy_B)) # 結合
     # シャッフル
     index = list(range(xy.shape[0]))
@@ -143,7 +150,7 @@ if __name__ == "__main__":
     # ニューラルネット
     N = Newral(in_newrons, mid_newrons, out_newrons)
     # 訓練
-    N.train(x, t, eta = 1, times = 1000)
+    N.train(x, t, eta = 0.1, times = 1000)
     # 誤差グラフ
     N.error_graph()
 

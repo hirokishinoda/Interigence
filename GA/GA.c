@@ -9,18 +9,18 @@
  *
  */
 
-/*--------------------------------------------------------------------
+/*
         Include Header
---------------------------------------------------------------------*/
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "knapsack.h"
 #include "GA.h"
 
-/*--------------------------------------------------------------------
+/*
         Function
---------------------------------------------------------------------*/
+*/
 void GAmain(struct item *itemData, int itemNum, char *gene[], int maxWeight);
 void calcFitness(struct item *itemData, int itemNum, char *gene[],
 		 int fitness[], int maxWeight);
@@ -33,10 +33,10 @@ void selection(int fitness[], int parents[]);
 void crossover(char *after_gene[],int popNum,char *gene[], int parents[],int itemNum);
 void mutation(char *gene[],int popNum,int itemNum);
 
-/*--------------------------------------------------------------------
+/*
         Function  : GAメイン関数
         Comment   :
---------------------------------------------------------------------*/
+*/
 void GAmain(struct item *itemData, int itemNum, char *gene[], int maxWeight)
 {
   int i, j;
@@ -57,7 +57,7 @@ void GAmain(struct item *itemData, int itemNum, char *gene[], int maxWeight)
   makePopulation(gene, itemNum);
 
   maxFitnessAll = 0;
-  for(generation=0; generation<GENERATION; generation++) {
+  for(generation=0; GENERATION; generation+=0) {
 
     /* 適合度を算出 */
     calcFitness(itemData, itemNum, gene, fitness, maxWeight);
@@ -96,10 +96,10 @@ void GAmain(struct item *itemData, int itemNum, char *gene[], int maxWeight)
   }
 }
 
-/*--------------------------------------------------------------------
+/*
         Function  : 初期集団を生成
         Comment   :
---------------------------------------------------------------------*/
+*/
 void makePopulation(char *gene[], int itemNum)
 {
   int i, j;
@@ -118,10 +118,10 @@ void makePopulation(char *gene[], int itemNum)
   }
 
 }
-/*--------------------------------------------------------------------
+/*
         Function  : 遺伝子を標準出力
         Comment   :
---------------------------------------------------------------------*/
+*/
 void dispGene(char *gene[], int itemNum)
 {
   int i, j;
@@ -138,10 +138,10 @@ void dispGene(char *gene[], int itemNum)
   }
 
 }
-/*--------------------------------------------------------------------
+/*
         Function  : 特定の個体の遺伝子を標準出力
         Comment   :
---------------------------------------------------------------------*/
+*/
 void dispGeneIndividual(char *gene[], int itemNum, int individualNo)
 {
   int i;
@@ -154,10 +154,10 @@ void dispGeneIndividual(char *gene[], int itemNum, int individualNo)
   printf("]\n");
   
 }
-/*--------------------------------------------------------------------
+/*
         Function  : 適合度を標準出力
         Comment   :
---------------------------------------------------------------------*/
+*/
 void dispFitness(int fitness[])
 {
   int i;
@@ -167,10 +167,10 @@ void dispFitness(int fitness[])
   }
 
 }
-/*--------------------------------------------------------------------
+/*
         Function  : 選択(ルーレット選択)
         Comment   : 
---------------------------------------------------------------------*/
+*/
 void selection(int fitness[], int parents[])
 {
   int i;
@@ -207,10 +207,10 @@ void selection(int fitness[], int parents[])
   } while(parentNo == num);
 
 }
-/*--------------------------------------------------------------------
+/*
         Function  : 交叉
         Comment   :
---------------------------------------------------------------------*/
+*/
 void crossover(char *after_gene[],int popNum,char *gene[], int parents[],int itemNum)
 {
   int cross_point = random() % itemNum;
@@ -226,10 +226,10 @@ void crossover(char *after_gene[],int popNum,char *gene[], int parents[],int ite
     }
   }
 }
-/*--------------------------------------------------------------------
+/*
         Function  : 突然変異
         Comment   :
---------------------------------------------------------------------*/
+*/
 void mutation(char *gene[],int popNum,int itemNum)
 {
   double Pm = 1.0 / itemNum;

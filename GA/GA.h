@@ -13,4 +13,4 @@
         Definition Value
 --------------------------------------------------------------------*/
 #define POPULATION  10		// 集団内の個体数
-#define GENERATION  100   // 最大世代数
+#define GENERATION  1000000   // 最大世代数
